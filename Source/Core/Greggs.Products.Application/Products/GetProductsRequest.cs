@@ -4,7 +4,8 @@ using Mediator;
 
 namespace Greggs.Products.Application.Products;
 
-public readonly record struct GetProductsRequest(
+public sealed record GetProductsRequest(
         int PageStart = 0,
-        int PageSize = 0) 
+        int PageSize = 5,
+        string Currency = "GBP") 
     : IRequest<Result<IEnumerable<Product>>>;
