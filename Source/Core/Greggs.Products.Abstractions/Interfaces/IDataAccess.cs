@@ -1,4 +1,4 @@
-namespace Greggs.Products.Database.DataAccess;
+namespace Greggs.Products.Abstractions.Interfaces;
 
 public interface IDataAccess<out T>
 {

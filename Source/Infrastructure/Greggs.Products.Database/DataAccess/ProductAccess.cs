@@ -1,3 +1,4 @@
+using Greggs.Products.Abstractions.Interfaces;
 using Greggs.Products.Abstractions.Models;
 
 namespace Greggs.Products.Database.DataAccess;

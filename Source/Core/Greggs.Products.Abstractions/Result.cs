@@ -25,6 +25,8 @@ public sealed record Result<T>
     public static Result<T> Failure(Error error) => new(error);
     public static implicit operator Result<T>(Error error) => new(error);
 
+    public ValueTask<Result<T>> ToValueTask() => ValueTask.FromResult(this);
+    
     public TOutput Match<TOutput>(Func<T, TOutput> success, Func<Error, TOutput> failure) =>
         IsSuccess 
             ? success(Value!) 

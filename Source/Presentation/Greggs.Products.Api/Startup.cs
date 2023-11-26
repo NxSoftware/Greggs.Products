@@ -1,3 +1,8 @@
+using Greggs.Products.Abstractions.Interfaces;
+using Greggs.Products.Abstractions.Models;
+using Greggs.Products.Application;
+using Greggs.Products.Database;
+using Greggs.Products.Database.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +16,8 @@ public class Startup
     {
         services.AddControllers();
         services.AddSwaggerGen();
-        services.AddMediator();
+        services.AddApplication();
+        services.AddDatabase();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
