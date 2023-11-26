@@ -11,14 +11,19 @@ public sealed class ProductControllerTests
         _factory = factory;
     }
     
-    [Fact]
-    public async Task Successful_Get_Products_call_responds_with_200_OK()
+    [Theory]
+    [InlineData(0, 5)]
+    [InlineData(5, 5)]
+    public async Task Successful_Get_Products_call_responds_with_200_OK(
+        int pageStart,
+        int pageSize)
     {
         var client = _factory.CreateClient();
 
-        var response = await client.GetAsync("/Product?pageStart=0&pageSize=5");
+        var response = await client.GetAsync($"/Product?pageStart={pageStart}&pageSize={pageSize}");
 
-        await Verify(response);
+        await Verify(response)
+            .UseParameters(pageStart, pageSize);
     }
 
     [Fact]

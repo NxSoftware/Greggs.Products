@@ -1,0 +1,32 @@
+﻿{
+  Version: 1.1,
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: [
+      {
+        name: Mexican Baguette,
+        priceInPounds: 2.1
+      },
+      {
+        name: Bacon Sandwich,
+        priceInPounds: 1.95
+      },
+      {
+        name: Coca Cola,
+        priceInPounds: 1.2
+      }
+    ]
+  },
+  Request: {
+    Uri: {
+      Path: http://localhost/Product,
+      Query: {
+        pageSize: 5,
+        pageStart: 5
+      }
+    }
+  }
+}
