@@ -1,4 +1,4 @@
-namespace Greggs.Products.Api.Models;
+namespace Greggs.Products.Abstractions.Models;
 
 public class Product
 {
