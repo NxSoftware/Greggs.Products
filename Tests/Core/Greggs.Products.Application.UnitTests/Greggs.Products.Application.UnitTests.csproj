@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Source\Core\Greggs.Products.Application\Greggs.Products.Application.csproj" />
+    <ProjectReference Include="..\..\Greggs.Products.TestData\Greggs.Products.TestData.csproj" />
   </ItemGroup>
 
 </Project>

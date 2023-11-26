@@ -7,18 +7,6 @@ namespace Greggs.Products.UnitTests.Products;
 
 public class GetProductsHandlerTests
 {
-    private static readonly IEnumerable<Product> Products = new List<Product>()
-    {
-        new() { Name = "Sausage Roll", PriceInPounds = 1m },
-        new() { Name = "Vegan Sausage Roll", PriceInPounds = 1.1m },
-        new() { Name = "Steak Bake", PriceInPounds = 1.2m },
-        new() { Name = "Yum Yum", PriceInPounds = 0.7m },
-        new() { Name = "Pink Jammie", PriceInPounds = 0.5m },
-        new() { Name = "Mexican Baguette", PriceInPounds = 2.1m },
-        new() { Name = "Bacon Sandwich", PriceInPounds = 1.95m },
-        new() { Name = "Coca Cola", PriceInPounds = 1.2m }
-    };
-
     private readonly IDataAccess<Product> _dataAccessMock;
 
     public GetProductsHandlerTests()
@@ -30,7 +18,7 @@ public class GetProductsHandlerTests
             {
                 var pageStart = callInfo.ArgAt<int>(0);
                 var pageSize = callInfo.ArgAt<int>(1);
-                return Products.Skip(pageStart).Take(pageSize);
+                return TestDataCreator.Products.Skip(pageStart).Take(pageSize);
             });
     }
 
@@ -42,7 +30,7 @@ public class GetProductsHandlerTests
     {
         var handler = new GetProductsHandler(_dataAccessMock);
         var request = new GetProductsRequest(pageStart, pageSize);
-        var expectedProducts = Products.Skip(pageStart).Take(pageSize);
+        var expectedProducts = TestDataCreator.Products.Skip(pageStart).Take(pageSize);
 
         var response = await handler.Handle(request, default);
 
