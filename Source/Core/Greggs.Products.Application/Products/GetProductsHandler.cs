@@ -47,7 +47,7 @@ public sealed class GetProductsHandler
     {
         if (currency.Equals(CurrencyConstants.DefaultCurrency))
         {
-            return Result<decimal>.Success(CurrencyConstants.DefaultConversionRate);
+            return CurrencyConstants.DefaultConversionRate;
         }
 
         return await _currencyConverter.GetConversionRateAsync(

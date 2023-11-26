@@ -16,7 +16,7 @@ public class CurrencyConverter : ICurrencyConverter
         Result<decimal> result; 
         if (ConversionRates.TryGetValue(toCurrency, out var conversionRate))
         {
-            result = Result<decimal>.Success(conversionRate);
+            result = conversionRate;
         }
         else
         {

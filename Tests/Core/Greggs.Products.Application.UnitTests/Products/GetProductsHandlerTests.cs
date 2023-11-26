@@ -74,7 +74,7 @@ public class GetProductsHandlerTests
         request.Currency.Should().Be(currency);
         _currencyConverterMock
             .GetConversionRateAsync(currency, default)
-            .Returns(Result<decimal>.Success(1.2m));
+            .Returns(1.2m);
 
         await _subjectUnderTest.Handle(request, default);
 
@@ -92,7 +92,7 @@ public class GetProductsHandlerTests
         var request = new GetProductsRequest(Currency: "EUR");
         _currencyConverterMock
             .GetConversionRateAsync(request.Currency, default)
-            .Returns(Result<decimal>.Success(conversionRate));
+            .Returns(conversionRate);
         var expectedProducts = TestDataCreator.Products
             .Skip(request.PageStart)
             .Take(request.PageSize)
