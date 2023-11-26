@@ -8,7 +8,7 @@
     Value: [
       {
         name: Sausage Roll,
-        priceInPounds: 1
+        priceInPounds: 1.0
       },
       {
         name: Vegan Sausage Roll,
@@ -25,20 +25,16 @@
       {
         name: Pink Jammie,
         priceInPounds: 0.5
-      },
-      {
-        name: Mexican Baguette,
-        priceInPounds: 2.1
-      },
-      {
-        name: Bacon Sandwich,
-        priceInPounds: 1.95
-      },
-      {
-        name: Coca Cola,
-        priceInPounds: 1.2
       }
     ]
   },
-  Request: http://localhost/Product
+  Request: {
+    Uri: {
+      Path: http://localhost/Product,
+      Query: {
+        pageSize: 5,
+        pageStart: 0
+      }
+    }
+  }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Greggs.Products.Abstractions.Constants;
 using Greggs.Products.Api.Extensions;
 using Greggs.Products.Application.Products;
 using Mediator;
@@ -29,9 +30,10 @@ public class ProductController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get(
         int pageStart = 0,
-        int pageSize = 5)
+        int pageSize = 5,
+        string currency = CurrencyConstants.DefaultCurrency)
     {
-        var request = new GetProductsRequest(pageStart, pageSize);
+        var request = new GetProductsRequest(pageStart, pageSize, currency);
         var result = await _mediator.Send(request, HttpContext.RequestAborted);
 
         return result.MapToResponse(this);
