@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Greggs.Products.Abstractions\Greggs.Products.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Core\Greggs.Products.Application\Greggs.Products.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Greggs.Products.Database\Greggs.Products.Database.csproj" />
   </ItemGroup>
 
 

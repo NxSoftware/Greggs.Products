@@ -10,8 +10,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-
         services.AddSwaggerGen();
+        services.AddMediator();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
