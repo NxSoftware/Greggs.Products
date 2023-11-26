@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Greggs.Products.Abstractions.Models;
+using Greggs.Products.Api.Extensions;
 using Greggs.Products.Application.Products;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
@@ -34,8 +34,6 @@ public class ProductController : ControllerBase
         var request = new GetProductsRequest(pageStart, pageSize);
         var result = await _mediator.Send(request, HttpContext.RequestAborted);
 
-        return result.Match<IActionResult>(
-            products => Ok(products),
-            error => Problem());
+        return result.MapToResponse(this);
     }
 }

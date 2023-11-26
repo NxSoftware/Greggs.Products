@@ -1,0 +1,17 @@
+﻿{
+  Version: 1.1,
+  Status: 400 Bad Request,
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json; charset=utf-8
+    },
+    Value: {
+      type: https://tools.ietf.org/html/rfc7231#section-6.5.1,
+      title: Bad Request,
+      status: 400,
+      detail: Mock Error,
+      code: 1
+    }
+  },
+  Request: http://localhost/Product
+}
