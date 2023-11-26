@@ -1,4 +1,5 @@
 using Greggs.Products.Abstractions;
+using Greggs.Products.Abstractions.Constants;
 using Greggs.Products.Abstractions.Interfaces;
 using Greggs.Products.Abstractions.Models;
 using Mediator;
@@ -8,8 +9,6 @@ namespace Greggs.Products.Application.Products;
 public sealed class GetProductsHandler 
     : IRequestHandler<GetProductsRequest, Result<IEnumerable<Product>>>
 {
-    private const string DefaultCurrency = "GBP";
-    private const decimal DefaultConversionRate = 1.0m;
     private readonly IDataAccess<Product> _productsDataAccess;
     private readonly ICurrencyConverter _currencyConverter;
 
@@ -25,8 +24,8 @@ public sealed class GetProductsHandler
         GetProductsRequest request,
         CancellationToken cancellationToken)
     {
-        var conversionRate = DefaultConversionRate;
-        if (request.Currency.Equals(DefaultCurrency) == false)
+        var conversionRate = CurrencyConstants.DefaultConversionRate;
+        if (request.Currency.Equals(CurrencyConstants.DefaultCurrency) == false)
         {
             var conversionRateResult = await _currencyConverter.GetConversionRateAsync(
                 request.Currency,
@@ -34,6 +33,10 @@ public sealed class GetProductsHandler
             if (conversionRateResult.IsSuccess)
             {
                 conversionRate = conversionRateResult.Value;
+            }
+            else
+            {
+                return conversionRateResult.Error!;
             }
         }
 

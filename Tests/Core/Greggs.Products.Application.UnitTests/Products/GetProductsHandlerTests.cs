@@ -1,5 +1,6 @@
 using System.Linq;
 using Greggs.Products.Abstractions;
+using Greggs.Products.Abstractions.Errors;
 using Greggs.Products.Abstractions.Interfaces;
 using Greggs.Products.Abstractions.Models;
 using Greggs.Products.Application.Products;
@@ -105,5 +106,19 @@ public class GetProductsHandlerTests
 
         response.IsSuccess.Should().BeTrue();
         response.Value.Should().BeEquivalentTo(expectedProducts);
+    }
+
+    [Fact]
+    public async Task Handler_returns_Error_in_case_of_failure_retrieving_conversion_rate()
+    {
+        var request = new GetProductsRequest(Currency: "UNKNOWN");
+        _currencyConverterMock
+            .GetConversionRateAsync(request.Currency, default)
+            .Returns(CurrencyConversionErrors.UnknownCurrency);
+        
+        var response = await _subjectUnderTest.Handle(request, default);
+
+        response.IsFailure.Should().BeTrue();
+        response.Error.Should().BeEquivalentTo(CurrencyConversionErrors.UnknownCurrency);
     }
 }
