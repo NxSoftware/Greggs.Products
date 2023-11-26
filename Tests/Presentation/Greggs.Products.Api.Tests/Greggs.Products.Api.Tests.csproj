@@ -8,16 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions.Web" Version="1.2.5" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.25" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
-        <PackageReference Include="xunit" Version="2.4.0" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+        <PackageReference Include="NSubstitute" Version="5.1.0" />
+        <PackageReference Include="Verify.Http" Version="5.0.1" />
+        <PackageReference Include="Verify.Xunit" Version="22.5.0" />
+        <PackageReference Include="xunit" Version="2.6.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="coverlet.collector" Version="3.1.2"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Source\Presentation\Greggs.Products.Api\Greggs.Products.Api.csproj" />
+      <ProjectReference Include="..\..\Greggs.Products.TestData\Greggs.Products.TestData.csproj" />
     </ItemGroup>
 
 </Project>

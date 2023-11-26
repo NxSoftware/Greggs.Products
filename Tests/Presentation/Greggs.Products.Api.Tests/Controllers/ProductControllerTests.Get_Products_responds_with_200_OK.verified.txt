@@ -1,0 +1,44 @@
+﻿{
+  Version: 1.1,
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: [
+      {
+        name: Sausage Roll,
+        priceInPounds: 1
+      },
+      {
+        name: Vegan Sausage Roll,
+        priceInPounds: 1.1
+      },
+      {
+        name: Steak Bake,
+        priceInPounds: 1.2
+      },
+      {
+        name: Yum Yum,
+        priceInPounds: 0.7
+      },
+      {
+        name: Pink Jammie,
+        priceInPounds: 0.5
+      },
+      {
+        name: Mexican Baguette,
+        priceInPounds: 2.1
+      },
+      {
+        name: Bacon Sandwich,
+        priceInPounds: 1.95
+      },
+      {
+        name: Coca Cola,
+        priceInPounds: 1.2
+      }
+    ]
+  },
+  Request: http://localhost/Product
+}
