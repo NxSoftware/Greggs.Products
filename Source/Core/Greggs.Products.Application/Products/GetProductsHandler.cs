@@ -24,30 +24,34 @@ public sealed class GetProductsHandler
         GetProductsRequest request,
         CancellationToken cancellationToken)
     {
-        var conversionRate = CurrencyConstants.DefaultConversionRate;
-        if (request.Currency.Equals(CurrencyConstants.DefaultCurrency) == false)
+        var conversionRateResult = await GetConversionRateAsync(request.Currency, cancellationToken);
+        if (conversionRateResult.IsFailure)
         {
-            var conversionRateResult = await _currencyConverter.GetConversionRateAsync(
-                request.Currency,
-                cancellationToken);
-            if (conversionRateResult.IsSuccess)
-            {
-                conversionRate = conversionRateResult.Value;
-            }
-            else
-            {
-                return conversionRateResult.Error!;
-            }
+            return conversionRateResult.Error!;
         }
 
         var products = _productsDataAccess
             .List(request.PageStart, request.PageSize)
             .Select(p =>
             {
-                p.PriceInPounds *= conversionRate;
+                p.PriceInPounds *= conversionRateResult.Value;
                 return p;
             });
 
         return Result<IEnumerable<Product>>.Success(products);
+    }
+
+    private async Task<Result<decimal>> GetConversionRateAsync(
+        string currency,
+        CancellationToken cancellationToken)
+    {
+        if (currency.Equals(CurrencyConstants.DefaultCurrency))
+        {
+            return Result<decimal>.Success(CurrencyConstants.DefaultConversionRate);
+        }
+
+        return await _currencyConverter.GetConversionRateAsync(
+            currency,
+            cancellationToken);
     }
 }
